@@ -70,16 +70,10 @@ robot_points = np.array([
 z_max_camera = 155
 z_min_camera = 279
 z_max_robot = 210
-z_min_robot =42
+z_min_robot =29
 
 class_1,class_2,class_3,class_4,class_5 = {}, {}, {}, {}, {} 
 track_by_class = {}
-DROP_BY_CLASS = {
-    0: (160,  80, 60),   
-    1: (160, -80, 60),   
-    2: (220,  80, 60),   
-    3: (220, -80, 60),   
-}
 
 DROP_BY_CLASS={
     0:(150,150,75),  #carro
@@ -467,13 +461,13 @@ def main():
 #  - ESC: salir
 # ============================================================
 if __name__ == "__main__":
-    t1 = threading.Thread(target=main)          # Homing robot
+    #t1 = threading.Thread(target=main)          # Homing robot
     t2 = threading.Thread(target=get_frame)     # Captura frames
     t3 = threading.Thread(target=run_detection) # Detección
     t4 = threading.Thread(target=extract)       # CSV writer (tu CSV original)
     t5 = threading.Thread(target=robot_worker, daemon=True) # pick and place
 	
-    t1.start()
+    #t1.start()
     t2.start()
     t3.start()
     t4.start()
@@ -532,7 +526,7 @@ if __name__ == "__main__":
     except queue.Full:
     	pass
 
-    t1.join()
+    #t1.join()
     t2.join()
     t3.join()
     t4.join()

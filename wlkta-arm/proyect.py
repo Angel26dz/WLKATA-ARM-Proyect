@@ -83,7 +83,7 @@ DROP_BY_CLASS={
     4:(40,150,30)	 #carta lado B
 }
 
-WAYPOINT = (200, 5, 210)
+WAYPOINT = (190, 5, 210)
 
 pick_queue = queue.Queue()
 robot_stop_event = threading.Event()
@@ -92,7 +92,7 @@ robot_lock = threading.Lock()
 Z_LIFT = 25          # mm para subir antes/después
 Z_SAFE_MIN = 29      # tu z_min_robot
 Z_SAFE_MAX = 210     # tu z_max_robot
-
+Z_PICK_OFFSET = -5   #ajuste de z
 # ============================================================
 # ROBOT HELPERS 
 # ============================================================
@@ -387,7 +387,7 @@ def pick_and_place_one(robot, obj):
     dx, dy, dz = drop
 
     # alturas
-    z_pick = clamp(z_pick, Z_SAFE_MIN, Z_SAFE_MAX)
+    z_pick = clamp(z_pick +Z_PICK_OFFSET, Z_SAFE_MIN, Z_SAFE_MAX)
     z_above = clamp(z_pick + Z_LIFT, Z_SAFE_MIN, Z_SAFE_MAX)
 
     dz = clamp(dz, Z_SAFE_MIN, Z_SAFE_MAX)

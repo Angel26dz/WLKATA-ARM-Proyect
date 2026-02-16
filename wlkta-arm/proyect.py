@@ -83,7 +83,7 @@ DROP_BY_CLASS={
     4:(40,150,30)	 #carta lado B
 }
 
-WAYPOINT = (190, 5, 210)
+WAYPOINT = (150, 5, 210)
 
 pick_queue = queue.Queue()
 robot_stop_event = threading.Event()
@@ -92,7 +92,7 @@ robot_lock = threading.Lock()
 Z_LIFT = 25          # mm para subir antes/después
 Z_SAFE_MIN = 29      # tu z_min_robot
 Z_SAFE_MAX = 210     # tu z_max_robot
-Z_PICK_OFFSET = -5   #ajuste de z
+Z_PICK_OFFSET = -10   #ajuste de z
 # ============================================================
 # ROBOT HELPERS 
 # ============================================================
@@ -110,7 +110,7 @@ def suction_off(robot):
     wait_idle(robot)
 
 def move_xyz(robot, x, y, z):
-    robot.writecoordinate(1, 0, float(x), float(y), float(z), 0, 20, 0)
+    robot.writecoordinate(1, 0, float(x), float(y), float(z), 0, 10, 0)
     wait_idle(robot)
     
 def clamp(v, vmin, vmax):
